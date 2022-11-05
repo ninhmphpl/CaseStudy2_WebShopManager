@@ -51,25 +51,19 @@ public class User extends Account{
         Buy buys = new Buy(this, data);
         RatingManager ratingManager = new RatingManager(this, data);
         while (true){
-            System.out.println("""
-                    ____________________________________
-                    |            MENU (User)            |
+            System.out.printf("""
+                    ========= MENU (User: %s)===========
                     |___________________________________|
                     |1. Show All Product                |
                     |2. Buy Product                     |
                     |3. Card                            |
                     |4. Account Manager                 |
                     |5. Rating Product                  |
-                    |0. Back                            |
+                    |0. Log Out                         |
                     |___________________________________|
-                    """);
+                    """, this.getName());
             switch (Input.inputRange("Input your choice: ", 0 , 5)){
-                case 1 -> {
-                    Filter2 filter = new Filter2(data.getAllProduct());
-                    show.showAllProduct();
-                    filter.menu();
-
-                }
+                case 1 -> show.showAllProduct();
                 case 2 -> buys.buy();
                 case 3 -> cartManager.menu();
                 case 4 -> accountManage.menu();

@@ -59,6 +59,9 @@ public class CRUDProduct {
             if (!(category = Input.inputString("Category: ")).equals("")){
                 data.getAllProduct().get(key).setCategories(category);
             }
+            data.saveProductFile();
+        }else {
+            System.out.println("Product Code is not exist!");
         }
     }
 }

@@ -51,7 +51,7 @@ public class Search {
         if (listSearch.size() > 0){
             Show.title();
             for(int i = listSearch.size()-1; i >= 0; i--){
-                System.out.println(listSearch.get(i).getProduct().toString());
+                System.out.println("|" + listSearch.get(i).getProduct().toString() + "|");
             }
             Show.footer();
         }else{

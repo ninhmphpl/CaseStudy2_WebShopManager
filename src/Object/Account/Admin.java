@@ -14,7 +14,7 @@ public class Admin extends User{
         UserManager userManager = new UserManager(data);
         while (true){
             System.out.printf("""
-                    ======== Menu (%s) ========
+                    ======== Menu (Admin: %s) ========
                      _______________________
                     |1. Menu User (demo)    |
                     |2. Add Product         |

@@ -40,6 +40,10 @@ public class Filter2 {
             case 2 -> showLowToHigh();
         }
     }
+    public void showByTimeLasted(){
+        products.sort(Comparator.comparing(Product::getCurrentTimeMilli));
+        showHighToLow();
+    }
 
     private void filterByTime(){
         products.sort(Comparator.comparing(Product::getCurrentTimeMilli));

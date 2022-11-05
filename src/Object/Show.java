@@ -1,6 +1,8 @@
 package Object;
 
 
+import Tool.Filter2;
+
 public class Show {
     Data data;
 
@@ -18,11 +20,9 @@ public class Show {
 
     public void showAllProduct(){
         if (data.productSize() > 0){
-            title();
-            for ( long productCode : data.getAllProduct().keySet()){
-                System.out.println("|" + data.getProduct(productCode).toString() + "|");
-            }
-            footer();
+            Filter2 filter2 = new Filter2(data.getAllProduct());
+            filter2.showByTimeLasted();
+            filter2.menu();
         }else {
             System.out.println("No Product!");
         }
