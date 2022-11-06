@@ -23,12 +23,14 @@ public class CartManager {
             System.out.println("No Product in Cart!");
             return;
         }
-        System.out.printf("%-20s%-20s%-20s%-20s%s\n","Product Code", "Name", "Price", "Category","Amount");
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n","Product Code", "Name", "Price", "Category","Port Time", "Amount");
         for(long productCode : carts.keySet()){
             System.out.println(data.product().get(productCode).toString() + carts.get(productCode));
         }
     }
     public void addProductToCart(){
+        Show show = new Show(data);
+        show.showAllProduct();
         long productCode = Input.inputLong("Input Product Code: ");
         if (data.product().check(productCode)){
             int amount = Input.inputRange("Input amount: ", 1 , Integer.MAX_VALUE);
@@ -44,6 +46,7 @@ public class CartManager {
         }
     }
     public void buyOrDeleteProductInCart(boolean buy){
+        showCart();
         long productCode = Input.inputLong("Input Product Code: ");
         if (data.product().check(productCode)){
             if(carts.containsKey(productCode)){

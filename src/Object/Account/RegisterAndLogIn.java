@@ -15,15 +15,12 @@ public class RegisterAndLogIn {
         String name = Input.inputString("User name: ");
         String password = Input.inputPassword("Password: ");
 
-        if (data.account().check(name)){
-            if(((User)data.account().get(name)).getPassword().equals(password)){
-                Account user = data.account().get(name);
-                System.out.println("Log in successful!");
-                user.run(data);
-            }else {
-                System.out.println("Account or password is not true...");
-            }
-        }
+        if (data.account().check(name) &&
+                ((User)data.account().get(name)).getPassword().equals(password)){
+            Account user = data.account().get(name);
+            System.out.println("Log in successful!");
+            user.run(data);
+        }else System.out.println("Account or password is not true...");
     }
 
     public void register(){
