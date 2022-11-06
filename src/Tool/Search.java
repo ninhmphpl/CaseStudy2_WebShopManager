@@ -19,14 +19,26 @@ public class Search {
     private List<SearchCount> listCountOfProduct(String keySearch){
 
         String regex = regexString(keySearch.toLowerCase());
+        String hasTagRegex = hashTagRegex(keySearch.toLowerCase());
+        System.out.println("regex: " + regex);
+        System.out.println("hashTag regex: " + hasTagRegex);
         List<SearchCount> listSearch = new ArrayList<>();
 
         for (Product product : products){
             Matcher searchWordInName = Pattern.compile(regex).matcher(product.getName().toLowerCase());
+            Matcher searchWordInCategory = Pattern.compile(hasTagRegex).matcher(product.getCategories().toLowerCase());
             int count = 0;
-            while(searchWordInName.find()){
-                count++;
+            if(!regex.isEmpty()){
+                while(searchWordInName.find()){
+                    count++;
+                }
             }
+            if (!hasTagRegex.isEmpty()){
+                while(searchWordInCategory.find()){
+                    count++;
+                }
+            }
+
             if (count > 0){
                 listSearch.add(new SearchCount(count,product));
             }
@@ -34,24 +46,36 @@ public class Search {
         return listSearch;
     }
 
-    public static String regexString(String string){
-        String regex = string.replaceAll("[ !@#$%^&*()_+--=<>?.,]+","|");
+    private String regexString(String string){
+        String regex = string.replaceAll("[ !@$%^&*()_+--=<>?.,]+","|");
         regex = regex.replaceAll("^[|]|[|]$", "");
         return regex;
     }
+
+    private String hashTagRegex(String keySearch){
+        StringBuilder regex = new StringBuilder();
+        Matcher hashTagRegex = Pattern.compile("#[a-zA-Z0-9]+").matcher(keySearch);
+        while (hashTagRegex.find()){
+            regex.append("|").append(keySearch, hashTagRegex.start(), hashTagRegex.end());
+        }
+        if(regex.length()>0){
+            return regex.deleteCharAt(0).toString().replaceAll("#+", "");
+        }else return "";
+
+    }
     public void search(){
         String searchKey = Input.inputString("Search key: ");
-        List<SearchCount> listSearch = listCountOfProduct(searchKey);
-        listSearch.sort(Comparator.comparing(SearchCount:: getCount ));
-        showDecrease(listSearch);
+        List<SearchCount> listCountOfProduct = listCountOfProduct(searchKey);
+        listCountOfProduct.sort(Comparator.comparing(SearchCount:: getCount ));
+        showDecrease(listCountOfProduct);
 
     }
 
-    private void showDecrease(List<SearchCount> listSearch){
-        if (listSearch.size() > 0){
+    private void showDecrease(List<SearchCount> listCountOfProduct){
+        if (listCountOfProduct.size() > 0){
             Show.title();
-            for(int i = listSearch.size()-1; i >= 0; i--){
-                System.out.println("|" + listSearch.get(i).getProduct().toString() + "|");
+            for(int i = listCountOfProduct.size()-1; i >= 0; i--){
+                System.out.println("|" + listCountOfProduct.get(i).getProduct().toString() + "|");
             }
             Show.footer();
         }else{
