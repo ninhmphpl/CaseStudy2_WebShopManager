@@ -3,19 +3,17 @@ package Object.Account;
 import Input.Input;
 import Object.*;
 
-import java.util.HashMap;
-
 public class UserManager {
     private final Data data;
-    private final HashMap<String, User> user;
+    private final AccountManager user;
 
     public UserManager(Data data) {
         this.data = data;
-        this.user = data.getAllUser();
+        this.user = data.account();
     }
     public void showAllUser(){
         System.out.println("    SHOW ALL USER");
-        if(data.usersSize() > 0){
+        if(data.account().size() > 0){
             System.out.printf("%-20s%-20s%-20s%-20s%n", "Name", "Password", "Wallet", "Spent");
             for (String userName : user.keySet()){
                 System.out.println(user.get(userName));
@@ -27,14 +25,14 @@ public class UserManager {
     public void checkInfoUser(){
         System.out.println("    CHECK INFO USER");
         String userName = Input.inputString("Input User Name: ");
-        if (data.checkAccount(userName)){
-            User u = data.getUser(userName);
+        if (data.account().check(userName)){
+            User u = (User) data.account().get(userName);
             System.out.printf("""
                     Name:  %s   Password: %s
                     Wallet: %s
                     """, u.getName(), u.getPassword(), u.getWallet());
-            AccountManage accountManage = new AccountManage(data.getUser(userName), data);
-            accountManage.showBought();
+            AccountManagers accountManagers = new AccountManagers((User) data.account().get(userName), data);
+            accountManagers.showBought();
         }else{
             System.out.println("User is not exist !");
         }
@@ -42,19 +40,17 @@ public class UserManager {
     public void addMoneyForUser(){
         System.out.println("    ADD MONEY FOR USER");
         String userName = Input.inputString("Input User Name: ");
-        if (data.checkAccount(userName)){
-            AccountManage accountManage = new AccountManage(data.getUser(userName), data);
-            accountManage.addMoney();
+        if (data.account().check(userName)){
+            AccountManagers accountManagers = new AccountManagers((User)data.account().get(userName), data);
+            accountManagers.addMoney();
         }else{
             System.out.println("User is not exits");
         }
     }
     public void deleteUser(){
         String userName = Input.inputString("Input User Name: ");
-        if(data.checkAccount(userName)){
-            data.getAllUser().remove(userName);
+        if(data.account().delete(userName)){
             System.out.println("Delete Successful");
-            data.saveUserFile();
         }else{
             System.out.println("User is not exist!");
         }
@@ -62,9 +58,9 @@ public class UserManager {
     public void changePasswordUser(){
         System.out.println("    CHANGE PASSWORD USER");
         String userName  = Input.inputString("Input User Name: ");
-        if(data.checkAccount(userName)){
-            AccountManage accountManage = new AccountManage(data.getUser(userName), data);
-            accountManage.changePassword();
+        if(data.account().check(userName)){
+            AccountManagers accountManagers = new AccountManagers((User)data.account().get(userName), data);
+            accountManagers.changePassword();
         }else{
             System.out.println("User is not exist!");
         }

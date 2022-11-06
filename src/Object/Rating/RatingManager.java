@@ -19,19 +19,19 @@ public class RatingManager {
 
     public void ratingProduct(){
         long productCode = Input.inputLong("Input product code: ");
-        if(data.checkProduct(productCode)){
-            Product product = data.getProduct(productCode);
+        if(data.product().check(productCode)){
+            Product product = data.product().get(productCode);
             Rating rating = new Rating(account.getName(), Input.inputRange("Star count(1-5): ",1,5),Input.inputString("Comment: "));
             product.getRatings().add(rating);
-            data.saveProductFile();
+            data.product().save();
         }else{
             System.out.println("Product is not exist!");
         }
     }
     public void showAllRatingOfProduct(){
         long productCode = Input.inputLong("Input product code: ");
-        if(data.checkProduct(productCode)){
-            Product product = data.getProduct(productCode);
+        if(data.product().check(productCode)){
+            Product product = data.product().get(productCode);
             ArrayList<Rating> ratings = product.getRatings();
             if (ratings.size()<1){
                 System.out.println("No rating");

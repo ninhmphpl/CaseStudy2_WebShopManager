@@ -25,12 +25,12 @@ public class CartManager {
         }
         System.out.printf("%-20s%-20s%-20s%-20s%s\n","Product Code", "Name", "Price", "Category","Amount");
         for(long productCode : carts.keySet()){
-            System.out.println(data.getProduct(productCode).toString() +carts.get(productCode));
+            System.out.println(data.product().get(productCode).toString() + carts.get(productCode));
         }
     }
     public void addProductToCart(){
         long productCode = Input.inputLong("Input Product Code: ");
-        if (data.checkProduct(productCode)){
+        if (data.product().check(productCode)){
             int amount = Input.inputRange("Input amount: ", 1 , Integer.MAX_VALUE);
             if(carts.containsKey(productCode)){
                 int value = carts.get(productCode);
@@ -38,14 +38,14 @@ public class CartManager {
             }else {
                 carts.put(productCode, amount);
             }
-            data.saveUserFile();
+            data.account().save();
         }else{
             System.out.println("Product is not exist!");
         }
     }
     public void buyOrDeleteProductInCart(boolean buy){
         long productCode = Input.inputLong("Input Product Code: ");
-        if (data.checkProduct(productCode)){
+        if (data.product().check(productCode)){
             if(carts.containsKey(productCode)){
                 int value = carts.get(productCode);
                 int amount = Input.inputRange("Input amount Product(1 - "+ value + "): ",1,value);
@@ -56,14 +56,14 @@ public class CartManager {
                         if(carts.get(productCode) <= 0){
                             carts.remove(productCode);
                         }
-                        data.saveUserFile();
+                        data.account().save();
                     }
                 }else{
                     carts.replace(productCode, value - amount);
                     if(carts.get(productCode) <= 0){
                         carts.remove(productCode);
                     }
-                    data.saveUserFile();
+                    data.account().save();
                 }
             }
         }else{

@@ -25,7 +25,7 @@ public class Buy {
     }
 
     public boolean buy(long productCode, int amount){
-        Product product = data.getProduct(productCode);
+        Product product = data.product().get(productCode);
         int total = product.getPrice() * amount;
         if (!Input.inputChoice("Total is: " + total + ", choice to buy (y = yes, n = no): ")){
             return  false;
@@ -39,14 +39,14 @@ public class Buy {
         }
         user.setWallet(user.getWallet() - total);
         user.setSpent(user.getSpent() + total);
-        data.saveUserFile();
+        data.account().save();
         System.out.println("Buy Successful, I am Shipping to you :D ");
         return true;
     }
 
     public void buy(){
         long productCode = Input.inputInt("Input code product: ");
-        if (data.checkProduct(productCode)){
+        if (data.product().check(productCode)){
             int amount = Input.inputRange("Input amount : ", 1, Integer.MAX_VALUE);
             buy(productCode,amount);
         }else {

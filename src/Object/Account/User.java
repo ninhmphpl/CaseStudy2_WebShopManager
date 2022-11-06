@@ -5,7 +5,6 @@ import Object.*;
 import Object.Buy.Buy;
 import Object.Cart.CartManager;
 import Object.Rating.RatingManager;
-import Tool.Filter2;
 
 import java.util.HashMap;
 
@@ -46,7 +45,7 @@ public class User extends Account{
     @Override
     public void run(Data data){
         Show show = new Show(data);
-        AccountManage accountManage = new AccountManage(this, data);
+        AccountManagers accountManagers = new AccountManagers(this, data);
         CartManager cartManager = new CartManager(this, data );
         Buy buys = new Buy(this, data);
         RatingManager ratingManager = new RatingManager(this, data);
@@ -66,7 +65,7 @@ public class User extends Account{
                 case 1 -> show.showAllProduct();
                 case 2 -> buys.buy();
                 case 3 -> cartManager.menu();
-                case 4 -> accountManage.menu();
+                case 4 -> accountManagers.menu();
                 case 5 -> ratingManager.menu();
                 case 0 -> {return;}
                 default -> System.out.println("Invalid selection ...");

@@ -19,8 +19,8 @@ public class Show {
     }
 
     public void showAllProduct(){
-        if (data.productSize() > 0){
-            Filter2 filter2 = new Filter2(data.getAllProduct());
+        if (data.product().size() > 0){
+            Filter2 filter2 = new Filter2(data.product().get());
             filter2.showByTimeLasted();
             filter2.menu();
         }else {

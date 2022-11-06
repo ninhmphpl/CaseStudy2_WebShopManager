@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import Input.Input;
 import Object.*;
 
@@ -20,8 +19,6 @@ public class Search {
 
         String regex = regexString(keySearch.toLowerCase());
         String hasTagRegex = hashTagRegex(keySearch.toLowerCase());
-        System.out.println("regex: " + regex);
-        System.out.println("hashTag regex: " + hasTagRegex);
         List<SearchCount> listSearch = new ArrayList<>();
 
         for (Product product : products){

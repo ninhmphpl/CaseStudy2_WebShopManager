@@ -14,15 +14,12 @@ public class RegisterAndLogIn {
         System.out.println("== LOG IN ==");
         String name = Input.inputString("User name: ");
         String password = Input.inputPassword("Password: ");
-        if (data.getAllUser().containsKey(name)){
-            if(data.getAllUser().get(name).getPassword().equals(password)){
-                User user = data.getAllUser().get(name);
+
+        if (data.account().check(name)){
+            if(((User)data.account().get(name)).getPassword().equals(password)){
+                Account user = data.account().get(name);
                 System.out.println("Log in successful!");
-                if (user instanceof Admin){
-                    user.run(data);
-                }else {
-                    user.run(data);
-                }
+                user.run(data);
             }else {
                 System.out.println("Account or password is not true...");
             }
@@ -32,9 +29,8 @@ public class RegisterAndLogIn {
     public void register(){
         System.out.println("== Register ==");
         String name = Input.inputString("User name: ");
-        if ( !data.checkAccount(name)){
-            data.addUser(new User(name, Input.inputPassword("Password: ")));
-            data.saveUserFile();
+        if ( !data.account().check(name)){
+            data.account().add(new User(name, Input.inputPassword("Password: ")));
             System.out.println("Register successful");
         }
     }

@@ -3,19 +3,19 @@ package Object.Account;
 import Input.Input;
 import Object.*;
 
-public class AccountManage {
+public class AccountManagers {
     User user;
     Data data;
 
-    public AccountManage(User user, Data data) {
+    public AccountManagers(User user, Data data) {
         this.user = user;
         this.data = data;
     }
 
     public void changePassword(){
         String newPassword = Input.inputPassword("Input new Password: ");
-        data.getAllUser().get(user.getName()).setPassword(newPassword);
-        data.saveUserFile();
+        user.setPassword(newPassword);
+        data.account().save();
         System.out.println("Change password successfully!");
     }
     public void addMoney(){
@@ -26,7 +26,7 @@ public class AccountManage {
         }
         int walletOfUser = user.getWallet();
         user.setWallet(walletOfUser + amount);
-        data.saveUserFile();
+        data.account().save();
         System.out.println("Recharge successful!\nThe money in your account is currently : " + user.getWallet() + "$");
     }
     public void showAccount(){
@@ -38,7 +38,7 @@ public class AccountManage {
         if(user.getBought().size() > 0){
             System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n","Product Code", "Name","Price", "Category","Post Time", "Amount");
             for(long productCode : user.getBought().keySet()){
-                Product product = data.getProduct(productCode);
+                Product product = data.product().get(productCode);
                 int value = user.getBought().get(productCode);
                 System.out.println(product.toString() + value);
             }

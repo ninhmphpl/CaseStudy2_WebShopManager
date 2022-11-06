@@ -5,11 +5,6 @@ import java.io.*;
 public class __IOClass {
 
 
-    /**
-     * check file if is not exists, it will be created parent and file of it
-     * @param file : file need to check
-     */
-
     public static void checkFile(File file){
         if (!file.exists()){
             try {
@@ -21,12 +16,6 @@ public class __IOClass {
         }
     }
 
-
-
-    /**
-     * @param object : ArrayList muốn ghi vào file
-     * @param file : Địa chỉ đường dẫn file
-     */
     public static void writeFile(Object object, File file, boolean append){
         checkFile(file);
 
@@ -40,11 +29,6 @@ public class __IOClass {
         }
     }
 
-    /**
-     *
-     * @param file file need to read
-     * @return ArrayList<Object> đọc được từ file
-     */
 
     public static Object readFile(File file){
         checkFile(file);

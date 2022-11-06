@@ -6,8 +6,8 @@ import Object.Account.Admin;
 public class Main {
     public static void main(String[] args){
         Data data = new Data();
-        Admin admin = new Admin("admin", "1234567");
-        admin.run(data);
+//        Admin admin = new Admin("admin", "1234567");
+//        data.account().add(admin);
         Guest guest = new Guest("name");
         guest.run(data);
     }

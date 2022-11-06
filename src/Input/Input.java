@@ -66,7 +66,7 @@ public class Input {
     }
 
     public static String inputPassword(String title){
-        System.out.println("Request from 6 - 12 character:");
+        System.out.println("Request from 6 - 32 character:");
         String string = inputString(title);
         if (string.length() < 6 || string.length() > 32){
             System.out.println("Illegal, try again!: ");
