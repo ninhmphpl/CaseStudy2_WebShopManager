@@ -59,8 +59,5 @@ public class MessengerManager implements Serializable {
     public boolean check(String userName){
         return messengerBox.containsKey(userName);
     }
-    public int sizeBox(String username){
-        return messengerBox.get(username).size();
-    }
 
 }
