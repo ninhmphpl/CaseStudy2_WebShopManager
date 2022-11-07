@@ -2,6 +2,7 @@ package Object.Account;
 
 import Bill.Bill;
 import Input.Input;
+import Messager.MessengerMenu;
 import Object.*;
 
 public class AccountManagers {
@@ -59,6 +60,7 @@ public class AccountManagers {
 
     }
     public void menu(){
+        MessengerMenu messengerMenu = new MessengerMenu(data, user);
         while (true){
             System.out.println("""
                 _____________________________________
@@ -69,15 +71,17 @@ public class AccountManagers {
                 |3. Product bought                  |
                 |4. Change Password                 |
                 |5. Bill                            |
+                |6. Messenger
                 |0. Back                            |
                 |___________________________________|
                 """);
-            switch (Input.inputRange("Input your choice: ",0,5)){
+            switch (Input.inputRange("Input your choice: ",0,6)){
                 case 1 -> showAccount();
                 case 2 -> addMoney();
                 case 3 -> showBought();
                 case 4 -> changePassword();
                 case 5 -> bill();
+                case 6 -> messengerMenu.chat();
                 case 0 ->{
                     return;
                 }
