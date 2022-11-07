@@ -4,6 +4,7 @@ import Date.ToolDate;
 import Object.*;
 
 import java.io.Serializable;
+import java.time.format.DateTimeFormatter;
 
 public class Bill implements Serializable {
     private final int billNumber;
@@ -36,13 +37,14 @@ public class Bill implements Serializable {
 
     @Override
     public String toString() {
-        return "==========BILL("+ billNumber +")===========" +
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return "==========BILL("+ billNumber +")===========\n" +
                 "User Name: " + userName + '\n' +
                 " Product Code: " + productCode + '|' +
                 " Name Product: " + nameProduct + '|' +
                 " Price: " + price + '|' +
                 " Amount: " + amount + '|' +
                 " Total: " + total + '|' +
-                " Date: " + ToolDate.convertCurrentTimeMillisToLocalDateTime(date) + '|';
+                " Date: " + ToolDate.convertCurrentTimeMillisToLocalDateTime(date).format(dateTimeFormatter);
     }
 }

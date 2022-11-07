@@ -1,5 +1,6 @@
 package Object.Account;
 
+import Bill.Bill;
 import Input.Input;
 import Object.*;
 
@@ -47,6 +48,16 @@ public class AccountManagers {
             System.out.println("No Product");
         }
     }
+    public void bill(){
+        if(data.bill().get(user.getName()) != null){
+            for (Bill i : data.bill().get(user.getName())){
+                System.out.println(i);
+            }
+        }else {
+            System.out.println("No Bill");
+        }
+
+    }
     public void menu(){
         while (true){
             System.out.println("""
@@ -56,15 +67,17 @@ public class AccountManagers {
                 |1. Show information account        |
                 |2. Add money to wallet             |
                 |3. Product bought                  |
-                |6. Change Password                 |
+                |4. Change Password                 |
+                |5. Bill                            |
                 |0. Back                            |
                 |___________________________________|
                 """);
-            switch (Input.inputRange("Input your choice: ",0,6)){
+            switch (Input.inputRange("Input your choice: ",0,5)){
                 case 1 -> showAccount();
                 case 2 -> addMoney();
                 case 3 -> showBought();
-                case 6 -> changePassword();
+                case 4 -> changePassword();
+                case 5 -> bill();
                 case 0 ->{
                     return;
                 }

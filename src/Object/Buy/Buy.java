@@ -1,5 +1,6 @@
 package Object.Buy;
 
+import Bill.Bill;
 import Input.Input;
 import Object.Account.User;
 import Object.*;
@@ -40,6 +41,10 @@ public class Buy {
         user.setWallet(user.getWallet() - total);
         user.setSpent(user.getSpent() + total);
         data.account().save();
+
+        Bill bill = new Bill(data.bill().size(), user.getName(), product, amount);
+        if(!data.bill().add(bill)) System.out.println("Add bill Failed");
+
         System.out.println("Buy Successful, I am Shipping to you :D ");
         return true;
     }
