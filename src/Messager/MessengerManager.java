@@ -47,6 +47,7 @@ public class MessengerManager implements Serializable {
     }
 
     public ArrayList<String> getList(String userName){
+        if(!check(userName)) return new ArrayList<>();
         return new ArrayList<>(messengerBox.get(userName).keySet());
     }
 
