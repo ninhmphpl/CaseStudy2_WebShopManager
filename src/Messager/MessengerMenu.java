@@ -34,6 +34,12 @@ public class MessengerMenu {
 
     private void createNewMessenger(){
         String userName = Input.inputString("Input username: ");
+        for(String a : data.messenger().getList(user.getName())){
+            if (a.equals(userName)){
+                chatWithUser(userName);
+                return;
+            }
+        }
         if(data.account().check(userName)){
             data.messenger().addNew(user.getName(), userName);
         }
