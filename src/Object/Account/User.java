@@ -28,6 +28,9 @@ public class User extends Account{
     public HashMap<Long,Integer> getBought() {
         return bought;
     }
+    public boolean checkBought(long productCode){
+        return bought.containsKey(productCode);
+    }
     public int getWallet() {return wallet;}
     public void setWallet(int wallet) {
         this.wallet = wallet;

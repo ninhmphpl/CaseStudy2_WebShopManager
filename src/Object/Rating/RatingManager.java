@@ -19,9 +19,25 @@ public class RatingManager {
 
     public void ratingProduct(){
         long productCode = Input.inputLong("Input product code: ");
+        if (!((User)account).checkBought(productCode)){
+            System.out.println("You cant rating this product, because you dont buy it!");
+            return;
+        }
         if(data.product().check(productCode)){
             Product product = data.product().get(productCode);
-            Rating rating = new Rating(account.getName(), Input.inputRange("Star count(1-5): ",1,5),Input.inputString("Comment: "));
+            int starCount = Input.inputRange("Star count(1-5): ",1,5);
+            String comment = Input.inputString("Comment: ");
+            Rating rating = new Rating(account.getName(), starCount, comment);
+
+            if(product.getRatings() != null && product.getRatings().size() > 0 ){
+                for (int i = 0 ; i < product.getRatings().size() ; i++){
+                    String nameRating = product.getRatings().get(i).getName();
+                    if (account.getName().equals(nameRating)){
+                        product.getRatings().remove(i);
+                        break;
+                    }
+                }
+            }
             product.getRatings().add(rating);
             data.product().save();
         }else{

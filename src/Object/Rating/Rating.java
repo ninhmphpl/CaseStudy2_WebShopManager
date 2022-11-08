@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Rating implements Serializable {
     private final String name;
-    private int starCount;
-    private String comment;
+    private final int starCount;
+    private final String comment;
 
 
     public Rating(String name, int starCount, String comment) {
@@ -18,21 +18,6 @@ public class Rating implements Serializable {
         return name;
     }
 
-    public int getStarCount() {
-        return starCount;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setStarCount(int starCount) {
-        this.starCount = starCount;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
     public void show(){
         System.out.printf("""
                  %-100s
