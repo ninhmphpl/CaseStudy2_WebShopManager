@@ -55,7 +55,7 @@ public class Product implements Serializable {
         this.categories = categories;
     }
     public void show(){
-        System.out.printf("|%-20s%-20s%-20d%-20s|\n", productCode, name,price,categories);
+        System.out.printf("|%-5s%-50s%-20d%-20s|\n", productCode, name,price,categories);
     }
 
     public long getCurrentTimeMilli() {
@@ -64,6 +64,6 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%-20s%-20s%-20d%-20s%-20s", productCode, name,price,categories, ToolDate.timeAgo(currentTimeMilli));
+        return String.format("%-5s%-50s%-20d%-20s%-20s", productCode, name,price,categories, ToolDate.timeAgo(currentTimeMilli));
     }
 }

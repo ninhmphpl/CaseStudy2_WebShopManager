@@ -2,6 +2,7 @@ package Input;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import String.EditString;
 
 public class Input {
     public static Scanner input = new Scanner(System.in);
@@ -59,12 +60,13 @@ public class Input {
         System.out.print(title);
         return input.nextLine();
     }
-
+    public static String inputName(String title){
+        return EditString.upperCaseAlphabetOfWord2(inputString(title));
+    }
     public static char inputChar(String title){
         System.out.print(title);
         return input.nextLine().charAt(0);
     }
-
     public static String inputPassword(String title){
         System.out.println("Request from 6 - 32 character:");
         String string = inputString(title);

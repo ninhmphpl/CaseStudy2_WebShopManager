@@ -10,12 +10,12 @@ public class Show {
         this.data = data;
     }
     public static void title(){
-        System.out.printf(" %-100s \n","_".repeat(100) );
-        System.out.printf("|%-20s%-20s%-20s%-20s%-20s|\n","Code Product", "Name","Price","Category","Post Time");
-        System.out.printf("|%-100s|\n", "_".repeat(100));
+        System.out.printf(" %-115s \n","_".repeat(115) );
+        System.out.printf("|%-5s%-50s%-20s%-20s%-20s|\n","Code", "Name","Price","Category","Post Time");
+        System.out.printf("|%-115s|\n", "_".repeat(115));
     }
     public static void footer(){
-        System.out.printf("|%-100s|\n","_".repeat(100));
+        System.out.printf("|%-115s|\n","_".repeat(115));
     }
 
     public void showAllProduct(){

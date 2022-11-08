@@ -23,7 +23,7 @@ public class CartManager {
             System.out.println("No Product in Cart!");
             return;
         }
-        System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n","Product Code", "Name", "Price", "Category","Port Time", "Amount");
+        System.out.printf("%-5s%-50s%-20s%-20s%-20s%s\n","Code", "Name", "Price", "Category","Port Time", "Amount");
         for(long productCode : carts.keySet()){
             System.out.println(data.product().get(productCode).toString() + carts.get(productCode));
         }
@@ -41,6 +41,7 @@ public class CartManager {
                 carts.put(productCode, amount);
             }
             data.account().save();
+            System.out.println("Add successful");
         }else{
             System.out.println("Product is not exist!");
         }
@@ -82,12 +83,14 @@ public class CartManager {
     public void menu(){
         while (true){
             System.out.println("""
-                        CART
-                    1. Show cart
-                    2. Add to cart
-                    3. Buy Product in Cart
-                    4. Delete Product in cart
-                    0. Back
+                     ___________________________
+                    |    CART                   |
+                    |1. Show cart               |
+                    |2. Add to cart             |
+                    |3. Buy Product in Cart     |
+                    |4. Delete Product in cart  |
+                    |0. Back                    |
+                    |___________________________|
                     """);
             switch (Input.inputRange("Input your choice: ",0,4)){
                 case 1 -> showCart();

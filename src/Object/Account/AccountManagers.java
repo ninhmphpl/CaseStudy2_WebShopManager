@@ -38,7 +38,7 @@ public class AccountManagers {
     public void showBought(){
         System.out.println("==== Product Bought =====");
         if(user.getBought().size() > 0){
-            System.out.printf("%-20s%-20s%-20s%-20s%-20s%s\n","Product Code", "Name","Price", "Category","Post Time", "Amount");
+            System.out.printf("%-5s%-50s%-20s%-20s%-20s%s\n","Code", "Name","Price", "Category","Post Time", "Amount");
             for(long productCode : user.getBought().keySet()){
                 Product product = data.product().get(productCode);
                 int value = user.getBought().get(productCode);

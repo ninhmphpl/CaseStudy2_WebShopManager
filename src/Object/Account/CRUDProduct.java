@@ -16,7 +16,7 @@ public class CRUDProduct {
 
     public void addProduct(){
         try{
-            String name = EditString.upperCaseAlphabetOfWord2(Input.inputString("Name: "));
+            String name = Input.inputName("Name: ");
             int price = Input.inputInt("Price: ");
             String category = Input.inputString("Category: ");
             if(data.product().add(new Product(data.product().newCode(),name, price, category))){
@@ -40,8 +40,8 @@ public class CRUDProduct {
         long productCode = Input.inputLong("Code product: ");
         if(data.product().check(productCode)) {
             String name, price, category;
-            if (!(name = Input.inputString("Name: ")).equals("")){
-                data.product().get(productCode).setName(EditString.upperCaseAlphabetOfWord2(name));
+            if (!(name = Input.inputName("Name: ")).equals("")){
+                data.product().get(productCode).setName(name);
             }
             if (!(price = Input.inputString("Price: ")).equals("")){
                 if(Pattern.matches("[0-9]+", price)){
