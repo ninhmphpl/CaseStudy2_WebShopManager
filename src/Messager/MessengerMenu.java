@@ -34,6 +34,10 @@ public class MessengerMenu {
 
     private void createNewMessenger(){
         String userName = Input.inputString("Input username: ");
+        if(data.account().check(userName)){
+            System.out.println("User is not exist!");
+            return;
+        }
         for(String a : data.messenger().getList(user.getName())){
             if (a.equals(userName)){
                 chatWithUser(userName);
